@@ -21,7 +21,8 @@ def lookup(plate,state):
 		'Accept-Language': 'en-US,en;q=0.9',
 	}
 
-	doesitpass=False
+        doesitpass=False
+        data = []
 	
 	params = (
 		('plate', plate),
@@ -41,7 +42,7 @@ def lookup(plate,state):
 		print("The lookup has failed, are you sure your plate is correct?")
 	if(doesitpass):
 		rows = table.findAll('tr')
-		data = [[td.findChildren(text=True) for td in tr.findAll("td")] for tr in rows]
-		print(data)
-
-lookup("example","NY")
+		lists = [[td.findChildren(text=True) for td in tr.findAll("td")] for tr in rows]
+		for i in lists:
+                        data += i
+		return data
